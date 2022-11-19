@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 import java.io.File;
+import java.nio.file.Files;
 
 public class FormHandlingTest extends AbstractDriverTestCase {
 	public void testShouldClickOnSubmitInputElements() {
@@ -164,7 +165,7 @@ public class FormHandlingTest extends AbstractDriverTestCase {
 		WebElement uploadElement = driver.findElement(By.id("upload"));
 		assertThat(uploadElement.getValue(), equalTo(""));
 		
-		File file = File.createTempFile("test", "txt");
+		File file = Files.createTempFile("test", "txt").toFile();
 		file.deleteOnExit();
 		
 		uploadElement.sendKeys(file.getAbsolutePath());
